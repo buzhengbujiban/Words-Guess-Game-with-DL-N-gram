@@ -38,6 +38,7 @@ So I can only create a private github for the overall code but here is some usef
 ### 1. Basic Selection Idea
 - **Heuristic Greedy Algorithm:** When the dictionary scope is limited, the guessed letter under the current conditions (blanked_word, guessed_wrong_letter) should maximize the information gain / potential life loss ratio to narrow down the possible word range in the dictionary.
 
+```latex
 s.t. 
 \[
 \left\{
@@ -91,7 +92,7 @@ Where \(w_1= (\) ' \(a\) ' appear in the blank); \(w_2, \ldots w_n\) refers to t
 &\therefore \text { guess }=\operatorname{argmax}\left\{\sum_{i=1}^m \operatorname{freq}\left(w_i \mid w_{i-1}, w_{i-2}, \ldots w_{i-n}\right)\right\}.
 \end{aligned}
 \]
-
+```
 ### 5. Optimization of Algorithm Time Complexity
 - **Constructing Frequency Tables:** Based on the aforementioned basic strategy, it is necessary to search for all words and word fragments that meet the current gram requirements in 250000 samples and find the most probable letters. As each guess requires searching for statistical frequencies of countless word fragments of different lengths of grams, the complexity is extremely high. Hence, it is advisable to pre-make N-gram word fragment frequency tables for direct querying in each guess.
 
