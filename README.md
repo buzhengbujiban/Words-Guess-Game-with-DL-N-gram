@@ -125,7 +125,8 @@ So I can only create a private github for the overall code but here is some usef
 - The network architecture leverages a conventional nn.transformer setup, incorporating Embedding + positionalEncoding, Encoder, Decoder, and multi-head attention:
 - I compared the next 4 models: by finetuned the attention part, I got them enhanced the accuracy one by one:
 - 
-模型1结构： 23%(accuracy)
+```markdown
+## 模型1结构： 23%(accuracy)
 input，被遮盖过后的单词，例如 hello, 被遮盖之后就是，#ell#
 Embedding, 首先是字母的embedding，其次是位置的embedding
 一层Encoder, 包括
@@ -134,7 +135,7 @@ Fully Connected Layer,
 output, 标准地接一个linear layer然后softmax，计算每个输入字母所对应的目标字母的概率
 
 
-模型2结构： 59%
+## 模型2结构： 59%
 input，被遮盖过后的单词，例如 hello, 被遮盖之后就是，#ell#
 Embedding, 首先是字母的embedding，其次是位置的embedding
 一层Encoder, 包括
@@ -143,7 +144,7 @@ LayerNorm
 output, 标准地接一个linear layer然后softmax，计算每个输入字母所对应的目标字母的概率
 
 
-模型3结构： 47%
+## 模型3结构： 47%
 input，被遮盖过后的单词，例如 hello, 被遮盖之后就是，#ell#
 Embedding, 首先是字母的embedding，其次是位置的embedding
 一层Encoder, 包括
@@ -152,7 +153,7 @@ skip connection，ResNet中提出之后就很火的做法，总的来说就是�
 LayerNorm
 output 标准地接一个linear layer然后softmax，计算每个输入字母所对应的目标字母的概率
 
-模型4结构：  60%
+## 模型4结构：  60%
 其中每层包括
 self attention (adding operator not multiply)，被遮盖后单词中的字母对其他字母的注意力
 skip connection， from ResNet
@@ -160,6 +161,7 @@ LayerNorm
 Fully Connected Layer,
 skip connection
 LayerNorm
+```
 
 
 final model:
