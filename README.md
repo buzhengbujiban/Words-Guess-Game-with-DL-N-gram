@@ -134,7 +134,7 @@ Fully Connected Layer,
 output, 
 
 
-## 模型2结构： 59%
+## 模型2结构： 50%
 input，
 Embedding, 
 Fully Connected Layer,
@@ -150,7 +150,7 @@ skip connection，ResNet
 LayerNorm
 output
 
-## 模型4结构：  60%
+## 模型4结构：  59%
 其中每层包括
 self attention (adding operator not multiply 表示被遮盖后单词中的字母对其他字母的注意力)，
 skip connection， from ResNet
