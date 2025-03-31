@@ -38,21 +38,7 @@ So I can only create a private github for the overall code but here is some usef
 ### 1. Basic Selection Idea
 - **Heuristic Greedy Algorithm:** When the dictionary scope is limited, the guessed letter under the current conditions (blanked_word, guessed_wrong_letter) should maximize the information gain / potential life loss ratio to narrow down the possible word range in the dictionary.
 
-```latex
-s.t. 
-\[
-\left\{
-\begin{array}{l}
-\text { blank word }="--p-e^{\prime \prime} \\ 
-\text { guessed letter }=" l k "
-\end{array}
-\right.
-\]
-
-opt. 
-\[
-\max \left\{\frac{\text { information gain (guess) }}{E(\text { trial loss) }}\right\}
-\]
+![image](https://github.com/user-attachments/assets/160d3eee-d7cc-49b1-8544-995b815f0d75)
 
 - Unfortunately, the dictionary scope is nearly infinite. Therefore, in the heuristic approach, the locally greedy strategy of guessing the most probable letter at each step predominates.
 
@@ -68,31 +54,8 @@ opt.
 ### 4. N-gram Strategy
 - The above method effectively utilizes information from word fragments **with lengths greater than the current word_blank length**. 
 - However, for longer word_blanks, information from words with lengths less than the current word_blank cannot be utilized. Therefore, to effectively use information from words, one can infer, based on the length of the current word_blank, the most probable letters that meet the conditions within the partial length of the current word_blank. This corresponds to the N-gram method in the NLP field.
+![image](https://github.com/user-attachments/assets/7897704b-5abc-4c5c-97c6-f82eab0a7001)
 
-\[
-s.t.  \left\{
-\begin{array}{l}
-\text { blank word }="--p-e^{\prime \prime} \\ 
-\text { guessed letter }=" l k "
-\end{array}
-\right.
-\]
-
-\[
-p\left(w_1, w_2, \ldots w_n\right)=p\left(w_2, w_3, \ldots w_n\right) \times p\left(w_1 \mid w_2, w_3, \ldots w_n\right)
-\]
-
-Where \(w_1= (\) ' \(a\) ' appear in the blank); \(w_2, \ldots w_n\) refers to the s.t. (e.g. \(w_2=\) the third letter is \(p\) )
-
-\[
-\begin{aligned}
-&\begin{aligned}
-\therefore P\left(w_1, w_2, \cdots, w_n\right) & =\prod_{i=1}^m P\left(w_i \mid w_{i-1},  w_{i-2}, \ldots w_{i-n}\right) \hat{=} \sum_{i=1}^m \operatorname{freq}\left(w_i \mid w_{i-1}, w_{i-2},  \ldots w_{i-n})\right. 
-\end{aligned}\\
-&\therefore \text { guess }=\operatorname{argmax}\left\{\sum_{i=1}^m \operatorname{freq}\left(w_i \mid w_{i-1}, w_{i-2}, \ldots w_{i-n}\right)\right\}.
-\end{aligned}
-\]
-```
 ### 5. Optimization of Algorithm Time Complexity
 - **Constructing Frequency Tables:** Based on the aforementioned basic strategy, it is necessary to search for all words and word fragments that meet the current gram requirements in 250000 samples and find the most probable letters. As each guess requires searching for statistical frequencies of countless word fragments of different lengths of grams, the complexity is extremely high. Hence, it is advisable to pre-make N-gram word fragment frequency tables for direct querying in each guess.
 
